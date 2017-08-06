@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background: #ccc;
+		}
+		img{
+			border: 0;
+		}
+		#container{
+			width: 520px;
+			height: 280px;
+			margin: 100px auto;
+		}
+		#container img{
+			width: 530px;
+			height: 280px;
+			border: 10px solid #fff;
+			position: absolute;
+			box-shadow: 5px 5px 10px 5px rgba(0,0,0,0.4);
+			transition: all 2s linear;
+		}
+		#container img:first-child{
+			transform: rotate(40deg);
+		}
+		#container img:last-child{
+			transform: rotate(-30deg);
+		}
+		#container img:hover{
+			z-index: 1;
+			transform: scale(1.2);
+			box-shadow: 10px 10px 10px 5px rgba(0,0,0,0.4)
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<img src="img/1.jpg" alt="">
+		<img src="img/2.jpg" alt="">
+	</div>
+</body>
+</html>

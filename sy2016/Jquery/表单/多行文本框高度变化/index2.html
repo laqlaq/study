@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			width: 200px;
+			height: 400px;
+			margin: 100px auto;
+		}
+		#big, #small{
+			width: 50px;
+			height: 30px;
+			background: #ccc;
+			float: left;
+			margin-left: 10px;
+			text-align: center;
+			line-height: 30px;
+		}
+		#text{
+			width: 200px;
+			height: 100px;
+			border: 2px solid #000;
+			float: left;
+			overflow: scroll;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="big">放大</div>
+		<div id="small">缩小</div>
+		<div id="text">
+			多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.
+			多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.多行文本框高度变化.
+		</div>
+	</div>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		var $text = $('#text');
+		$('#big').click(function(){
+			if(!$text.is(':animated')){
+				if($text.height() < 500){
+					$text.animate({height : '+=50'},400);
+				}
+			}
+		});
+
+		$('#small').click(function(){
+			if(!$text.is('animated')){
+				if($text.height() > 50){
+					$text.animate({height : '-=50'},400);
+				}
+			}
+		});
+	</script>
+</body>
+</html>

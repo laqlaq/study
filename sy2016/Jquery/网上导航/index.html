@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航换肤</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#container{
+			width: 300px;
+			margin: 100px 100px;
+		}
+		#tab{
+			width: 190px;
+			height: 30px;
+			border: 1px solid #000;
+			padding-top: 7px; 
+			padding-left: 10px;
+		}
+		#tab li{
+			width: 15px;
+			height: 15px;
+			background: #ccc;
+			float: left;
+			margin-right: 5px;
+			background-image: url(theme.gif);
+			background-repeat: no-repeat;
+		}
+		.news{
+			width: 80px;
+			height: 50px;
+			float: left;
+			background: #4261a4;
+			margin: 10px 10px;
+			text-align: center;
+			line-height: 50px;
+		}
+		.skin0{
+			background: #253d6f;
+		}
+		.skin1{
+			background: #b5d521;
+		}
+		.skin2{
+			background: #fba70e;
+		}
+		.skin3{
+			background: #0abfcf;
+		}
+		.skin4{
+			background: #e3165c;
+		}
+		.skin5{
+			background: #be46d8;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="tab">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		</ul>
+		<div class="news">时事新闻</div>
+		<div class="news">娱乐新闻</div>
+	</div>
+	<script src="../jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			function int(){
+				$('#tab li').each(function(index, elem){
+					$(this).css('background-position', -index * 20 + 'px ' + '0px');
+				});
+			}
+
+			int();
+			var index = 0;
+			if(getCookie('skin')){
+				index = getCookie('skin');
+			}	
+
+			$('#tab li').click(function(){
+				int();
+				$(this).css('background-position', -$(this).index() * 20 + 'px ' + '-15px');
+				$('.news').attr('class', 'news').addClass('skin' + $(this).index());
+				setCookie('skin', $(this).index(),7);
+				console.log($(this).index());
+			});
+
+			$('#tab li').eq(index).trigger('click');
+
+		});
+		
+		function setCookie(key, value, day){
+            str = key + "=" + value + ";";
+            if(day){
+                date = new Date();
+                date.setDate(date.getDate() + day);
+                str += "expires = " + date;
+            }
+            document.cookie = str;
+        }
+
+       
+
+        function getCookie(key){
+            var str =  document.cookie;
+            var arr = str.split('; ');
+            for(var i=0; i<arr.length; i++){
+                var arr1 = arr[i].split('=');
+                if(arr1[0] == key){
+                    return arr1[1];
+                }
+            }
+        }
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人空间</title>
+<style style="text/css">
+	#change{
+		margin:auto;
+		width:200px;
+		hight:150px;
+		background-color:#39C;
+		border-radius:50px;}
+	
+</style>
+<link style="text/css" rel="stylesheet" href="../css/daylog.css">
+<script type="text/javascript" src="../js/daylog.js"></script>
+<!--<script type="text/javascript" src="jquery/jquery-3.2.1.slim.min.js">
+	$(document).ready(function() {
+    $(h4).click(function(){
+			alert("hello");
+			$(this).hide();
+		});
+});	
+</script>-->
+<!--<script>
+/*var text = document.getElementById("change").innerHTML;
+	alert(text);*/
+    document.getElementById("tex").value=document.getElementById("hello").innerHTML;
+</script>-->
+
+</head>
+
+<body onLoad="show()">
+	<div class="log">
+    	<h4>生活记录</h4>
+        <p>
+        	今天早上起来吃早餐，到中午饿了吃午餐，晚上饿了吃晚餐，晚上九点又可以睡觉了。
+        </p>
+        <div id="hello"></div>
+        <div id="texss"></div>
+        <div id="texss1"></div>
+        <div id="texss2"></div>
+        <textarea id="tex" rows="10" cols="50"></textarea>
+        <input>
+        <div id="change" onClick="postshow()">吃饭了吗？</div>
+    </div>
+
+</body>
+</html>

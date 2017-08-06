@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转轮播图</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			width: 520px;
+			height: 280px;
+			margin: 50px auto;
+			position: relative;
+		}
+		#imgs{
+			perspective: 1000px;
+		}
+		#imgs img{
+			width: 520px;
+			height: 280px;
+			position: absolute;
+			transform-origin: bottom;
+			opacity: 0;
+		}
+		#prev,#next{
+			width: 50px;
+			height: 50px;
+			background: #ccc;
+			border-radius: 50%;
+			position: absolute;
+			top: 50%;
+			margin-top: -25px;
+			font-size: 40px;
+			color: #fff;
+			text-align: center;
+			line-height: 50px;
+			box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+			-webkit-text-stroke: 1px #000;
+		}
+		#prev{
+			left: -100px;
+		}
+		#next{
+			right: -100px;
+		}
+		#imgs .show1{
+			animation: show1 1s ease forwards;
+		}
+		#imgs .hide1{
+			animation: hide1 0.5s ease forwards;
+		}
+		#imgs .show2{
+			animation: show2 1s ease forwards;
+		}
+		#imgs .hide2{
+			animation: hide2 0.5s ease forwards;
+		}
+		@keyframes show1{
+			from{
+				transform: rotateX(-180deg);
+			}	
+			to{
+				opacity: 1;
+				transform: rotateX(-360deg);
+			}
+		}
+		@keyframes hide1{
+			from{
+				opacity: 1;
+				transform: rotateX(0deg);
+			}
+			to{
+				opacity: 0;
+				transform: rotateX(-180deg);
+			}
+		}
+		@keyframes show2{
+			from{
+				transform: rotateX(180deg);
+			}	
+			to{
+				opacity: 1;
+				transform: rotateX(360deg);
+			}
+		}
+		@keyframes hide2{
+			from{
+				opacity: 1;
+				transform: rotateX(0deg);
+			}
+			to{
+				opacity: 0;
+				transform: rotateX(180deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="imgs">
+			<img src="img/1.jpg" alt="" style="z-index: 4" class="show1">
+			<img src="img/2.jpg" alt="" style="z-index: 3">
+			<img src="img/3.jpg" alt="" style="z-index: 2">
+			<img src="img/4.jpg" alt="" style="z-index: 1">
+		</div>
+		<div id="prev"><b>&lt;</b></div>
+		<div id="next"><b>&gt;</b></div>
+	</div>
+	<script>
+		var oImgs = document.getElementById('imgs');
+		var aImg = oImgs.getElementsByTagName('img');
+		var oPrev = document.getElementById('prev');
+		var oNext = document.getElementById('next');
+		var nowIdx = 0;
+		for(var i=0; i<aImg.length; i++){
+			aImg[i].style.zIndex = aImg.length - i;
+		}
+		oPrev.onclick = oNext.onclick = function(){
+			if(this == oPrev){
+				aImg[nowIdx].className = 'hide2';
+				nowIdx--;
+				if(nowIdx == -1){
+					nowIdx = 3;
+				}
+				aImg[nowIdx].className = 'show2';
+			}else{
+				aImg[nowIdx].className = 'hide1';
+				nowIdx++;
+				if(nowIdx == aImg.length){
+					nowIdx = 0;
+				}
+				aImg[nowIdx].className = 'show1';
+			}
+		};
+	</script>
+</body>
+</html>

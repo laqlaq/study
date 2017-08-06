@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航菜单</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+		ul{
+			list-style: none;
+		}
+		.main{
+			width: 120px;
+			height: 30px;
+			float: left;
+			margin-right: 5px;
+			background: #ddd;
+		}
+		.main .main-link{
+			width: 100%;
+			height: 100%;
+			color: #000;
+			text-align: center;
+			line-height: 30px;
+			display: block;
+			background: url(images/down.gif) no-repeat 10px;
+		}
+		.main li a{
+			width: 120px;
+			height: 20px;
+			display: block;
+			background: gray;
+			color: #fff;
+			text-align: center;
+			line-height: 20px;
+			margin-bottom: 2px;
+		}
+		.main ul{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li class="main">
+			<a href="#" class="main-link">菜单1</a>
+			<ul>
+				<li><a href="#">子菜单1</a></li>
+				<li><a href="#">子菜单2</a></li>
+				<li><a href="#">子菜单3</a></li>
+			</ul>
+		</li>
+		<li class="main">
+			<a href="#" class="main-link">菜单2</a>
+			<ul>
+				<li><a href="#">子菜单1</a></li>
+				<li><a href="#">子菜单2</a></li>
+				<li><a href="#">子菜单3</a></li>
+			</ul>
+		</li>
+		<li class="main">
+			<a href="#" class="main-link">菜单3</a>
+			<ul>
+				<li><a href="#">子菜单1</a></li>
+				<li><a href="#">子菜单2</a></li>
+				<li><a href="#">子菜单3</a></li>
+			</ul>
+		</li>
+	</ul>
+	<script src="../jquery-1.12.4.js"></script>
+	<script>
+
+		$('.main').hover(function(){
+			$(this).find('.main-link').css('background-image', 'url(images/up.gif)').siblings().stop().slideDown();
+		},function(){
+			$(this).find('.main-link').css('background-image', 'url(images/down.gif)').siblings().stop().slideUp();
+		});
+	</script>
+</body>
+</html>

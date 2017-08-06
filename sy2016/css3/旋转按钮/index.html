@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转按钮</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#container{
+			width: 50px;
+			height: 50px;
+			position: relative;
+			top: 300px;
+			left: 300px;
+		}
+		#home{
+			transition: transform 1s ease;
+		}
+		#container img{
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			bottom: 0;
+			cursor: pointer;
+			right: 0;
+			transition: transform 1s ease;
+		}
+
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<div id="menu">
+			<img src="img/close.png" alt="">
+			<img src="img/full.png" alt="">
+			<img src="img/open.png" alt="">
+			<img src="img/prev.png" alt="">
+			<img src="img/refresh.png" alt="">
+		</div>
+		<img src="img/home.png" alt="" id="home">
+	</div>
+	<script>
+		var oHome = document.getElementById('home');
+		var oMenu = document.getElementById('menu');
+		var aImg = oMenu.getElementsByTagName('img');
+		var flag = false;
+		oHome.onclick = function(){
+			if(flag){
+				this.style.transform = 'rotate(360deg)';
+				for(var i=0; i<aImg.length; i++){
+					aImg[i].style.transitionDelay = 100 * (aImg.length - i) + 'ms';
+					aImg[i].style.transform = 'translate(0,0)' + 'rotate(0deg)';
+				}
+			}else{
+				this.style.transform = 'rotate(-360deg)';
+				for(var i=0; i<aImg.length; i++){
+					var x = -200 * Math.cos(22.5 * i * Math.PI / 180);
+					var y = -200 * Math.sin(22.5 * i * Math.PI / 180);
+					aImg[i].style.transitionDelay = 100 * i + 'ms';
+					aImg[i].style.transform = 'translate('+ x + 'px,' + y + 'px' +')' + 'rotate(-360deg)';
+				}
+			}
+			flag = !flag;
+		};
+
+		for(var i=0; i<aImg.length; i++){
+			aImg[i].currentTransform = '';
+			aImg[i].onclick = function(){
+				this.currentTransform = this.style.transform;
+				if(this.currentTransform.indexOf('scale(2)') == -1){
+					this.style.transform = this.currentTransform + 'scale(2)';
+				}else{
+					this.style.transform = this.currentTransform.replace(/scale\(2\)/g,'');
+				}
+				this.addEventListener('webkitTransitionEnd',fn);
+				function fn(){
+					if(this.currentTransform.indexOf('scale(2)') != -1){
+						this.currentTransform.repalce(/scale\(2\)/g,'');
+					}
+					this.style.transform = this.currentTransform;
+					this.removeEventListener('webkitTransitionEnd',fn);
+				}
+			};
+		}
+
+
+		
+
+
+
+
+	</script>
+</body>
+</html>

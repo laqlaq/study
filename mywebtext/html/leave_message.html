@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>个人空间</title>
+<link type="text/css" rel="stylesheet" href="../css/leave_message.css" />
+<link rel="stylesheet" type="text/css" media="screen and (max-device-width: 400px)" href="../css/leave_message1.css" />		
+<script type="text/javascript">
+	function validation(){
+		var va=document.getElementById("text_area").value;
+		if(va==""){
+			alert("留言板为空，不能提交！"); onSubmit="return validation()"
+			return false;	
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="div_conten">
+       <!-- <img src="../image/b_2.jpg" alt="背景图" />-->
+        <div id="message">
+            <form id="form" method="post" action="../php/leave_message.php" onSubmit="return validation()">
+                我要留言：<br />
+                <textarea id="text_area" name="text_area"></textarea><br />
+                <input id="input" type="submit" name="submit" value="确定"> 
+            </form>
+        </div>
+    </div>
+</body>
+</html>

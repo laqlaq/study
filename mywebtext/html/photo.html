@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=devive-width,initial-scale=1">
+<title>个人空间</title>
+<link style="text/css" rel="stylesheet" href="../css/photo.css">
+<link rel="stylesheet" type="text/css" media="screen and (max-device-width: 400px)" href="../css/photo1.css" />
+</head>
+
+<body>
+	<div id="div_conten">
+       <!-- <img class="background_img" src="../image/b_7.jpg" alt="背景图">-->
+            <div class="photo_div1">
+                <span><strong>图片集</strong></span><br />
+                <div class="photo_div2">
+                    <div id="box">
+                        <div id="marguee_1">
+                            <table>
+                                <tr>
+                                    <td><img src="../image/p_1.jpg" alt="图片"/ ></td>
+                                    <td><img src="../image/p_2.jpg" alt="图片"/ ></td>
+                                    <td><img src="../image/p_3.jpg" alt="图片"/ ></td>
+                                    <td><img src="../image/p_4.jpg" alt="图片"/ ></td>
+                                    <td><img src="../image/p_5.jpg" alt="图片"/ ></td>
+                                    <td><img src="../image/p_6.jpg" alt="图片"/ ></td>
+                                    <td><img src="../image/p_4.jpg" alt="图片"/ ></td>
+                                    <td id="marguee_2"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript">
+	var speed=40;
+	var box=document.getElementById("box");
+	var marguee_1=document.getElementById("marguee_1");
+	var marguee_2=document.getElementById("marguee_2");
+	marguee_2.innerHTML=marguee_1.innerHTML;
+	
+	
+	function marguee_function(){
+		if(marguee_2.offsetWidth>box.scrollLeft){
+			box.scrollLeft++;	
+		}else{
+				box.scrollLeft-=marguee_2.offsetWidth;
+			}	
+	}
+	
+	var marguee_query_function=setInterval(marguee_function,speed);
+	box.onmouseover=function(){clearInterval(marguee_query_function)};
+	box.onmouseout=function(){marguee_query_function=setInterval(marguee_function,speed)};
+</script>
+</body>
+</html>

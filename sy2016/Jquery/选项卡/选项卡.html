@@ -1,0 +1,73 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选项卡</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		#container{
+			width: 400px;
+			margin: 100px auto;
+		}
+		#menu{
+			width: 400px;
+			height: 30px;
+		}
+		#menu li{
+			width: 100px;
+			height: 30px;
+			float: left;
+			background: #ccc;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 30px;
+		}
+		#menu .selected{
+			background: #000;
+			color: #fff;
+		}
+		#content{
+			width: 400px;
+			height: 200px;
+			background: #ddd;
+			border-top: 1px solid #000;
+		}
+		#content div{
+			display: none;
+		}
+		#content .selected{
+			display: block;
+		} 
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="menu">
+			<li class="selected">js</li>
+			<li>html</li>
+			<li>css</li>
+		</ul>
+		<div id="content">
+			<div class="selected">111111</div>
+			<div>222222</div>
+			<div>333333</div>
+		</div>
+	</div>
+	<script src="../jquery-1.12.4.js"></script>
+	<script>
+		$('#menu li').click(function(){
+			// $('#menu li').removeClass('selected');
+			// $(this).addClass('selected');
+			$(this).addClass('selected').siblings().removeClass('selected');
+			var $index = $(this).index();
+			$('#content div').eq($index).addClass('selected').siblings().removeClass('selected');
+		});
+	</script>
+</body>
+</html>

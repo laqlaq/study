@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图-无缝滚动</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul{
+			list-style: none;
+		}
+		img{
+			border: 0;
+		}
+		#container{
+			width: 520px;
+			height: 280px;
+			margin: 100px auto;
+			overflow: hidden;
+			position: relative;
+		}
+		#imgs{
+			width: 2080px;
+			height: 280px;
+			position: absolute;
+			left: 0;
+		}
+		#imgs img{
+			float: left;
+		}
+		#tab{
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			z-index: 1;
+		}
+		#tab li,#arrows span{
+			width: 20px;
+			height: 20px;
+			background: #000;
+			color: #fff;
+			text-align: center;
+			line-height: 20px;
+			float: left;
+			margin-right: 10px;
+			cursor: pointer;
+		}
+		#tab .selected{
+			background: orange;
+		}
+		#arrows{
+			position: absolute;
+			left: 10px;
+			bottom: 10px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="container">
+		<ul id="tab">
+			<li class="selected">1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div id="imgs">
+			<img src="img/1.jpg" alt="">
+			<img src="img/2.jpg" alt="">
+			<img src="img/3.jpg" alt="">
+			<img src="img/4.jpg" alt="">
+		</div>
+		<div id="arrows">
+			<span id="prev">&lt;</span>
+			<span id="next">&gt;</span>
+		</div>
+	</div>
+	<script src="jquery-1.12.4.js"></script>
+	 <script>
+	 	$(function(){
+	 		var $li = $('#tab li');
+	 		var $imgs = $('#imgs')
+	 		var $img = $('img', $imgs);
+	 		var imgWidth = $img.eq(0).width();
+	 		var nowIdx = 0;
+	 		var $newNode = $img.eq(0).clone();
+	 		var timer;
+	 		$imgs.append($newNode);
+	 		$imgs.width(imgWidth * ($img.length + 1));
+	 		
+	 		$li.on('mouseover', function(){
+	 			changeImg($(this).index());
+	 		});
+
+
+	 		$('#prev').on('click', function(){
+	 			nowIdx--;
+	 			if(nowIdx == -1){
+	 				nowIdx = $img.length - 1;
+	 				$imgs.css({
+	 					left : -imgWidth * $img.length
+	 				});
+	 			}
+	 			changeImg(nowIdx);
+	 		});
+
+	 		$('#next').on('click', function(){
+	 			nowIdx++;
+	 			if(nowIdx == ($img.length + 1)){
+	 				nowIdx = 1;
+	 				$imgs.css({
+	 					left : 0
+	 				});
+	 			}
+	 			changeImg(nowIdx);
+	 		});
+
+	 		run();
+	 		$('#container').hover(function(){
+	 			clearInterval(timer);
+	 		},function(){
+	 			run();
+	 		});
+
+	 		function run(){
+	 			timer = setInterval(function(){
+	 				$('#next').trigger('click');
+	 			},1000);
+	 		}
+
+	 		function changeImg(index){
+	 			$li.eq(index==$img.length?0:index).addClass('selected').siblings().removeClass('selected');
+	 			$imgs.stop().animate({
+	 				left : -imgWidth * index
+	 			});
+	 		}
+
+
+
+
+	 	});
+
+
+
+
+	 </script>
+</body>
+</html>

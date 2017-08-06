@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>折叠菜单3</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		#menu{
+			width: 200px;
+		}
+		#menu h3{
+			height: 30px;
+			background: black;
+			color: white;
+			line-height: 30px;
+			cursor: pointer;
+		}
+		.sub-menu{
+			border: 1px solid black;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<ul id="menu">
+		<li class="main-menu">
+			<h3>管理区</h3>
+			<ul class="sub-menu">
+				<li><a href="#">001</a></li>
+				<li><a href="#">002</a></li>
+				<li><a href="#">003</a></li>
+			</ul>
+		</li>
+		<li class="main-menu">
+			<h3 onselectstart="return false">交流区</h3>
+			<ul class="sub-menu">
+				<li><a href="#">001</a></li>
+				<li><a href="#">002</a></li>
+				<li><a href="#">003</a></li>
+			</ul>
+		</li>
+	</ul>
+	<script src="../jquery-1.12.4.js"></script>
+	<script>
+		$(function(){
+			$('h3').click(function(){
+				//$(this).next().toggle();
+				$(this).next().toggleClass('sub-menu');
+			});
+		});
+	</script>
+</body>
+</html>

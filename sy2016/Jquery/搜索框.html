@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" id="text">
+	<ul id="ul1">
+		<li>11</li>
+		<li>28</li>
+		<li>34</li>
+		<li>54</li>
+	</ul>
+	<script src="jquery-1.12.4.js"></script>
+	<script>
+		$('#text').keyup(function(){
+			$('#ul1 li:contains('+ $('#text').val() +')').css('background' ,'red');
+		});
+	</script>
+</body>
+</html>
