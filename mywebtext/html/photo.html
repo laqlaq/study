@@ -10,7 +10,6 @@
 
 <body>
 	<div id="div_conten">
-       <!-- <img class="background_img" src="../image/b_7.jpg" alt="背景图">-->
             <div class="photo_div1">
                 <span><strong>图片集</strong></span><br />
                 <div class="photo_div2">
@@ -39,7 +38,8 @@
 	var marguee_1=document.getElementById("marguee_1");
 	var marguee_2=document.getElementById("marguee_2");
 	marguee_2.innerHTML=marguee_1.innerHTML;
-	
+	//offsetWidth对象的宽度
+	//scrollLeft对象滚动出显示窗口的距离
 	
 	function marguee_function(){
 		if(marguee_2.offsetWidth>box.scrollLeft){

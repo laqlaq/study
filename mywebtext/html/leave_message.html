@@ -4,20 +4,22 @@
 <meta charset="utf-8">
 <title>个人空间</title>
 <link type="text/css" rel="stylesheet" href="../css/leave_message.css" />
+<script type="text/javascript" src="../jquery/jquery-3.2.1.js"></script>
+<!--<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>-->
 <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 400px)" href="../css/leave_message1.css" />		
 <script type="text/javascript">
 	function validation(){
 		var va=document.getElementById("text_area").value;
-		if(va==""){
-			alert("留言板为空，不能提交！"); onSubmit="return validation()"
-			return false;	
+		//if(va==""||va.test(/^\s+$/g)){
+		if(va==""||va.replace(/^\s+$/g,"")==""){
+			alert("留言板为空，不能提交！");
+			return false;
 		}
 	}
 </script>
 </head>
 <body>
 	<div id="div_conten">
-       <!-- <img src="../image/b_2.jpg" alt="背景图" />-->
         <div id="message">
             <form id="form" method="post" action="../php/leave_message.php" onSubmit="return validation()">
                 我要留言：<br />
@@ -25,6 +27,52 @@
                 <input id="input" type="submit" name="submit" value="确定"> 
             </form>
         </div>
+        <div id="leave_div"></div>
     </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+        $.ajax({
+			type:'GET',
+			url:"../php/access_to_information.php",
+			async:false,
+			dataType:"json",
+			cache:false,
+			success: function(data){
+				var jsons=eval(data);
+//					var html ="";
+//					for(var i=0;i<jsons.length;i++){
+//						html+="<div class='lev'>";
+//						html+="<p>"+jsons[i].name+"的留言：</p>";
+//						html+="<p>"+jsons[i].leaves+"</p>";
+//						html+="<p class='p3'>"+jsons[i].time+"</p>";
+//						html+="</div>";	
+//					}
+//					$("#leave_div").append(html);
+					
+//					$.each(jsons,function(i,item){
+//						var text1=$("<div class='ll lev"+i+"'></div>");	
+//						var text2=$("<p></p>").text(jsons[i].name+"的留言：");
+//						var text3=$("<p></p>").text(jsons[i].leaves);
+//						var text4=$("<p class='p3'></p>").text(jsons[i].time);
+//						$("#leave_div").append(text1);
+//						$(".lev"+i).append(text2,text3,text4);		
+//					});
+					
+					$.each(jsons,function(i,item){
+						var text1=$("<div class='ll lev"+i+"'></div>");	
+						var text2=$("<p></p>").text(item['name']+"的留言：");
+						var text3=$("<p></p>").text(item['leaves']);
+						var text4=$("<p class='p3'></p>").text(item['time']);
+						$("#leave_div").append(text1);
+						var g=$(".lev").length;						
+						$(".lev"+i).append(text2,text3,text4);	
+					});	
+			},
+			error: function(){
+			  $('#leave_div').html('暂无留言信息！');	
+			}
+		});
+    });
+</script>
 </body>
 </html>

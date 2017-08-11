@@ -17,9 +17,22 @@ body{
 	width:40%;
 	height:150px;
 	position:absolute;
-	top:55%;
+	/*top:55%;*/
+	top:20%;
 	left:35%;
 	}
+#leave_div{
+	border:1px solid;
+	width:40%;
+	height:35%;
+	position:absolute;
+	top:60%;
+	left:35%;
+	overflow:scroll;}
+.ll{
+	border-bottom:2px solid;}
+.p3{
+	text-align:right;}
 img{
 	position:absolute;
 	z-index:-1;

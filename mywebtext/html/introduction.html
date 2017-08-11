@@ -6,26 +6,56 @@
 <title>个人空间</title>
 <link type="text/css" rel="stylesheet" href="../css/introduction.css">
 <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 400px)" href="../css/introduction1.css" />
-<script type="text/javascript" src="../js/introduction.js"></script>
+<!--<script type="text/javascript" src="../js/introduction.js"></script>-->
+<script type="text/javascript" src="../jquery/jquery-3.2.1.js"></script><!--
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>-->
 <script type="text/javascript">
-function showww(){//设置input为只读
+/*function showww(){//设置input为只读
 	var a=document.getElementsByTagName("input");
 	for(var i=0;i<a.length;i++){
 		a[i].setAttribute("readonly","readonly");	
 	}
-}
-/*function showee(){
-	var a=document.getElementsByTagName("input");
-	for(var i=0;i<a.length;i++){
-		a[i].removeAttribute("readonly");	
-	}
 }*/
+$(document).ready(function(){
+	/*$.ajax({///////////////////////////////方式一
+       		type: "get",
+			url: "../php/introduction.php",
+			async:false,
+			//beforeSend: function(){alert("发送前");},
+       		success : function(data){
+				$("#show").html(data);
+				$("input").attr("readonly","readonly");
+       		},
+			//complete: function(){alert("完成了");},
+       		error: function(){
+              alert(0);
+       		}
+		});*/	
+	//////////////////////////////////////////////方式二
+	/*$("#show").load("../php/introduction.php",function (responseText, textStatus, XMLHttpRequest){
+			//this;//在这里this指向的是当前的DOM对象
+			$("input").attr("readonly","readonly"); 
+		});*/
+	////////////////////////////////////////////方式三
+	/*$("#show").load("../php/introduction.php",function(){
+		$("input").attr("readonly","readonly");
+	});*/
+	
+	/////////////////////////////////////////////方式四
+	$.get("../php/introduction.php",{async:false},function (data){
+			$("#show").html(data);
+			$("input").attr("readonly","readonly");	
+			//alert(data);
+		});	
+});
+/*window.onload=function(){
+	show();
+	showww();
+	}*/
 </script>
 </head>
-
-<body onLoad="show();showww()">
+<body>
 	<div id="div_conten">
-       <!-- <img class="img" src="../image/b_3.jpg" alt="背景图" />-->
         <div class="set_transparent">
              <div id="show"></div>
         </div>

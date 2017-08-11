@@ -7,7 +7,7 @@
 
 <body>
 <?php
-	$con=mysql_connect("localhost","root","123456");
+	$con=mysql_connect("localhost","root","mysqlpasswd");
 	if(!$con){
 		die('Could not connect:'.mysql_error());
 		}

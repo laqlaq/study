@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!doctype html>
 <html>
 <head>
@@ -6,12 +9,14 @@
 
 <body>
 <?php
+	//连接数据库
 	$con=mysql_connect("localhost","root","mysqlpasswd");
 	if(!$con){
 			die("Cuold not connect:".mysql_error());
 	}else{
 		mysql_query("set names utf8");
 	}
+	//判断是否有info数据库，如果没有就创建一个
 	$data_base_name="info";
 	$result1=mysql_query("show databases");
 	while($r1=mysql_fetch_assoc($result1)){
@@ -21,7 +26,9 @@
 		$sql="create database info";
 		mysql_query($sql,$con);
 	}
+	//选择指定数据库
 	mysql_select_db("info",$con);
+	//判断指定表格是否存在，不存在就新建
 	$table_name="info_table";
 	if(!mysql_query("show table like '".$table_name."'")){
 		$sql="CREATE TABLE info_table(
@@ -35,11 +42,11 @@
 		)ENGINE=MyISAM DEFAULT CHARSET=utf8;";
 		mysql_query($sql,$con);	
 	}
+	//查询数据
 	$sql="SELECT * FROM info_table";
 	$result=mysql_query($sql,$con);
 	$rew = mysql_fetch_assoc($result);
 	if(empty($rew)){
-		echo "33"."<br />";
 		$sql="INSERT INTO info_table(name,sex,age,birthday,job,school)
 			VALUES('刘阿强','男',22,'1995-11-17','学生','合肥师范学院')";
 		$re=mysql_query($sql,$con);
@@ -77,7 +84,9 @@
 					echo "<td><input type='text' value=". $rew['school']."></td>";
                 echo "</tr>
             </table>";
+	//关闭数据库
 	mysql_close($con);
+//	echo "欢迎".$_SESSION['name'];
 ?>
 
 </body>

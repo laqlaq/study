@@ -16,8 +16,22 @@ body{
 	/*border:1px solid;*/
 	width:90%;
 	height:5em;
-	margin-top:10%;
+	margin-top:1%;
 	margin-left:-30%;}
+#leave_div{
+	border:1px solid;
+	width:90%;
+	height:35%;
+	position:absolute;
+	top:60%;
+	left:5%;
+	overflow:scroll;
+	background-color:#fff;
+	opacity:0.5;}
+.ll{
+	border-bottom:2px solid #fff;}
+.p3{
+	text-align:right;}
 #form{
 	height:100%;
 	font:#F00;
